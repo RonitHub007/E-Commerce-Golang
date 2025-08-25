@@ -1,0 +1,43 @@
+// E-Commerce application with Golang
+
+Need to build a web app which can facilitate the buy, sale new & used/old p
+roducts in certain range.Where seller can post products and advertise it for sale and buyer can search and view product as per choice and buy it online . 
+Application should provide features to talk to buyer with seller directly without mediator and 
+buy the products by paying the price.Payment system will collect the money of the product and certain % of the final product price will be hold for platform and rest will be release to seller . 
+The communications of every process will be notified through sms and email notification
+
+
+
+Use Cases
+1. User Can Buy Product online
+2. User can become seller
+3. Seller can manage products and orders
+4. Seller Can collect payment & View Transactions
+
+
+
+Seller ---------------> Platform <----------------- Buyer
+
+System Design 
+    1. Functional Requirements
+        a. Users
+            i. User signup/login 
+            ii. User verification with sms / otp
+            iii. User can become seller and Buyer
+        b. Catalog
+            i. Product Listing
+            ii. Manage Products (create/update/delete products)
+            iii. Stock Management
+        c. Payment
+            i. Buyer can purchase product online payment(card/ bankling / upi)
+        d. Notifications
+            i. Email and SMS
+    2. Non - Functional Requirements
+        a. System Should be highly available in cloud with multiple region because this is C2C portal
+        b. System should maintain best practices to able to scale horizontally
+        c. System should design the way it can be broken down to microservices 
+        d. Loosely coupled services and communications
+        e. It should have mechanism for logging and monitoring to inspect services health and availibilty
+        f. System should design with documentation for better scope of usability to understand the architecture and business logic of the Api usage
+        g. Should Follow CQRS.
+

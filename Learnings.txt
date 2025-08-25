@@ -1,0 +1,4 @@
+1. Setting up the localserver with env load 
+
+    create a server.go in the ../internal/api
+    create a instance of fiber there 

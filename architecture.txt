@@ -1,0 +1,19 @@
+// Image will be attached here 
+// Image is E-commerece . png
+
+
+// Tech Stack 
+
+Golang as programming language 
+
+Fiber as golang framework
+
+GoORM as db framework (postgress)
+
+Stripe as payment provider , Elastic Search for searching
+
+Postgress as db
+
+Sendgrid as mail provider
+
+AWS Or GCP for deployment
