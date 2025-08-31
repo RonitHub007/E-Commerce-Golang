@@ -1,0 +1,19 @@
+version: "3.9"
+
+services: 
+  postgres: 
+    image: postgres:16
+    container_name: postgres_online_shopping
+    restart: always
+    environment: 
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root   # ✅ fixed spelling
+      POSTGRES_DB: online_shopping  # ⚠️ use underscore instead of dash
+    ports:
+      - "5428:5432"
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
+    driver: local

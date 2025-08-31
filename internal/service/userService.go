@@ -1,6 +1,10 @@
 package service
 
-import "E-Commerce-Golang/internal/domain"
+import (
+	"E-Commerce-Golang/internal/domain"
+	"E-Commerce-Golang/internal/dto"
+	"log"
+)
 
 type UserService struct {
 }
@@ -11,9 +15,9 @@ func (s UserService) FindUserByemail(email string) (*domain.User, error) {
 	return nil, nil
 }
 
-func (s UserService) Signup(input any) (string, error) {
-
-	return "", nil
+func (s UserService) Signup(input dto.UserSignuP) (string, error) {
+	log.Println(input)
+	return "this-is-my-token-as-of-now", nil
 }
 
 func (s UserService) Login(input any) (string, error) {
