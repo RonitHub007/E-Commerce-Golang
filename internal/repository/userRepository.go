@@ -1,0 +1,70 @@
+package repository
+
+import (
+	"E-Commerce-Golang/internal/domain"
+	"errors"
+	"log"
+
+	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
+)
+
+type UserRepository interface {
+	CreateUser(u domain.User) (domain.User, error)
+	FindUser(email string) (domain.User, error)
+	FindUserById(id uint) (domain.User, error)
+	UpdateUserById(id uint, u domain.User) (domain.User, error)
+}
+
+type userRepository struct {
+	db *gorm.DB
+}
+
+func NewUserRepository(db *gorm.DB) UserRepository {
+	return &userRepository{
+		db: db,
+	}
+}
+
+func (r userRepository) CreateUser(usr domain.User) (domain.User, error) {
+	err := r.db.Create(&usr).Error
+
+	if err != nil {
+		log.Fatalf("Error %v", err)
+		return domain.User{}, errors.New("failed to create user")
+	}
+	return usr, nil
+}
+func (r userRepository) FindUser(email string) (domain.User, error) {
+	var user domain.User
+	err := r.db.First(&user, "email=?", email)
+
+	if err != nil {
+		log.Fatalf("Error %v", err)
+		return domain.User{}, errors.New("failed to find user")
+	}
+	return user, nil
+}
+func (r userRepository) FindUserById(id uint) (domain.User, error) {
+	var user domain.User
+	err := r.db.First(&user, id)
+
+	if err != nil {
+		log.Fatalf("Error %v", err)
+		return domain.User{}, errors.New("failed to find user")
+
+	}
+	return user, nil
+}
+
+func (r userRepository) UpdateUserById(id uint, u domain.User) (domain.User, error) {
+	var user domain.User
+
+	err := r.db.Model(&user).Clauses(clause.Returning{}).Where("id=?", id).Updates(u).Error
+	if err != nil {
+		log.Fatalf("Error %v", err)
+		return domain.User{}, errors.New("failed to update user")
+
+	}
+	return user, nil
+}
